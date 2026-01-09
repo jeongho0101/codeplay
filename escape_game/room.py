@@ -1,3 +1,14 @@
+# import event
+
+weapon = 0
+battle = 0
+Random = 0
+mhp = 100
+ehp = 0
+answer = ""
+keys = 2
+
+
 rooms = {'room01':[1,0,0,0],
          'room02':[1,1,0,0],
          'room03':[0,1,1,0],
@@ -20,7 +31,6 @@ running = True
 room_name = 'room01'
 dir = 0
 def enter(room_name):
-    #print(f"현재위치: {room_name}")
     print("어디로 가시겠습니까?")
     print("1.오른쪽\n2.왼쪽\n3.뒤\n4.앞\n")
     direction = int(input())
@@ -51,6 +61,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
 
     if room_name == 'room03':
+        event.gf(weapon)
         if walls[direction-1] == 1:
             if direction - 1 == 1:
                 nextRoom = 'room02'
@@ -64,6 +75,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
     
     if room_name == 'room04':
+        event.tutorial(mhp)
         if walls[direction-1] == 1:
             if direction - 1 == 0:
                 nextRoom = 'room05'
@@ -90,6 +102,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")  
     
     if room_name == 'room06':
+        event.shop(weapon,mhp,answer)
         if walls[direction-1] == 1:
             if direction - 1 == 0:
                 nextRoom = 'room13'
@@ -111,6 +124,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
 
     if room_name == 'room07':
+        event.key_room(keys,answer)
         if walls[direction-1] == 1:
             if direction - 1 == 3:
                 nextRoom = 'room06'
@@ -146,6 +160,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")  
     
     if room_name == 'room10':
+        event.battle2(mhp)
         if walls[direction-1] == 1:
             if direction - 1 == 1:
                 nextRoom = 'room11'
@@ -172,6 +187,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
     
     if room_name == 'room12':
+        event.treasure1(weapon,answer)
         if walls[direction-1] == 1:
             nextRoom = 'room11'
             print(f"{nextRoom} 방")
@@ -193,6 +209,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
     
     if room_name == 'room14':
+        event.battle1(mhp)
         if walls[direction-1] == 1:
             if direction - 1 == 1:
                 nextRoom = 'room13'
@@ -206,6 +223,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
     
     if room_name == 'room15':
+        event.battle2(mhp)
         if walls[direction-1] == 1:
             if direction - 1 == 0:
                 nextRoom = 'room16'
@@ -236,6 +254,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
     
     if room_name == 'room17':
+        event.treasure2(mhp,answer)
         if walls[direction-1] == 1:
             if direction - 1 == 2:
                 nextRoom = 'room16'
@@ -245,6 +264,7 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
 
     if room_name == 'room18':
+        event.boss(mhp)
         if walls[direction-1] == 1:
             if direction - 1 == 1:
                 nextRoom = 'room16'

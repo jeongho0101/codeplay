@@ -17,7 +17,7 @@ Random = 0
 mhp = 100
 ehp = 0
 answer = ""
-keys = 2
+keys = 0
 
 def gf(weapon):
     typing_Ani("할아버지: 용사여, 잠깐 얘기좀 하겠나.", 0.1)
@@ -99,7 +99,12 @@ def battle2(mhp):
 
 def boss(mhp):
     ehp = 500
-    typing_Ani("보스용이 나타났다!", 0.05)
+    # typing_Ani("보스용이 나타났다!", 0.05)
+    # typing_Ani("보스용:Bist du ein Mensch?", 0.1)
+    # typing_Ani("보스용:Es ist 30 Jahre her, seit Menschen hierher kamen.", 0.1)
+    # typing_Ani("보스용:Bist du ein Krieger, der gekommen ist, um mich herauszufordern?", 0.1)
+    # typing_Ani("보스용:Wenn dem so ist, werde ich mich wehren.", 0.1)
+    # typing_Ani("보스용과의 전투가 시작됐다!", 0.05)
     while ehp > 0:
         battle = input("선택(1또는 2):")
         Random = random.randint(1,2)
@@ -112,7 +117,7 @@ def boss(mhp):
             if mhp < 0:
                 typing_Ani("용사 사망", 0.07)
                 return mhp
-    typing_Ani("보스 승리!!!!!!!!!!!!", 0.05)
+    typing_Ani("보스전전 승리!!!!!!!!!!!!", 0.05)
     return mhp
 
 def shop(weapon,mhp,answer):
@@ -210,7 +215,3 @@ def treasure2(mhp,answer):
     elif keys == 1:
         typing_Ani("열쇠가 없어 문을 열지 못했다",0.05)
         return mhp
-    
-
-
-treasure2(keys,answer)
