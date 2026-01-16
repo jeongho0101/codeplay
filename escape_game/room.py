@@ -1,36 +1,67 @@
-# import event
+import event
 
 weapon = 0
 battle = 0
 Random = 0
 mhp = 100
+mmhp = 100
 ehp = 0
 answer = ""
 keys = 2
 
 
-rooms = {'room01':[1,0,0,0],
-         'room02':[1,1,0,0],
-         'room03':[0,1,1,0],
-         'room04':[1,0,0,1],
-         'room05':[1,1,0,0],
-         'room06':[1,1,1,1],
-         'room07':[0,0,0,1],
-         'room08':[0,0,1,1],
-         'room09':[0,0,1,1],
-         'room10':[0,1,1,0],
-         'room11':[1,1,0,0],
-         'room12':[0,1,0,0],
-         'room13':[1,1,0,0],
-         'room14':[0,1,0,1],
-         'room15':[1,0,1,0],
-         'room16':[1,1,0,1],
-         'room17':[0,0,1,0],
-         'room18':[0,0,0,0]}
+rooms = {'room01':[1,0,0,0,0],
+         'room02':[1,1,0,0,0],
+         'room03':[0,1,1,0,1],
+         'room04':[1,0,0,1,2],
+         'room05':[1,1,0,0,0],
+         'room06':[1,1,1,1,6],
+         'room07':[0,0,0,1,7],
+         'room08':[0,0,1,1,0],
+         'room09':[0,0,1,1,0],
+         'room10':[0,1,1,0,4],
+         'room11':[1,1,0,0,0],
+         'room12':[0,1,0,0,8],
+         'room13':[1,1,0,0,0],
+         'room14':[0,1,0,1,3],
+         'room15':[1,0,1,0,4],
+         'room16':[1,1,0,1,0],
+         'room17':[0,0,1,0,9],
+         'room18':[0,0,0,0,5]}
 running = True
 room_name = 'room01'
 dir = 0
+
 def enter(room_name):
+    print(rooms[room_name])
+    if len(rooms[room_name]) == 5:
+        if rooms[room_name][4] == 1:
+            event.gf(weapon)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 2:
+            event.tutorial(mhp)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 3:
+            event.battle1(mhp)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 4:
+            event.battle2(mhp)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 5:
+            event.boss(mhp)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 6:
+            event.shop(weapon,mmhp,answer)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 7:
+            event.key_room(keys,answer)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 8:
+            event.treasure1(weapon,answer)
+            rooms[room_name][4] = 0
+        elif rooms[room_name][4] == 9:
+            event.treasure2(mmhp,answer)
+            rooms[room_name][4] = 0
     print("어디로 가시겠습니까?")
     print("1.오른쪽\n2.왼쪽\n3.뒤\n4.앞\n")
     direction = int(input())
@@ -61,7 +92,6 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
 
     if room_name == 'room03':
-        event.gf(weapon)
         if walls[direction-1] == 1:
             if direction - 1 == 1:
                 nextRoom = 'room02'
@@ -75,7 +105,6 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
     
     if room_name == 'room04':
-        event.tutorial(mhp)
         if walls[direction-1] == 1:
             if direction - 1 == 0:
                 nextRoom = 'room05'
@@ -275,5 +304,5 @@ def move(room_name, walls, direction):
     return nextRoom
 
 while running:
-    dir = enter("room_name")
+    dir = enter(room_name)
     room_name = move(room_name, rooms[room_name], dir)
