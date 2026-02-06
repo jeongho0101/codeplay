@@ -15,6 +15,7 @@ weapon = 0
 battle = 0
 Random = 0
 mhp = 100
+mmhp = 100
 ehp = 0
 answer = ""
 keys = 0
@@ -41,8 +42,9 @@ def gf(weapon):
             return weapon
         else:
             typing_Ani("할아버지: 뭐라고?", 0.1)
-
+#1
 def tutorial(mhp):
+    mhp = mmhp
     ehp = 50
     typing_Ani("그냥 잡용이 나타났다!", 0.05)
     typing_Ani("배틀 방법:1과 2중 선택, 랜덤으로 성공과 실패가 결정됨", 0.05)
@@ -60,8 +62,9 @@ def tutorial(mhp):
                 return mhp
     typing_Ani("승리!!!!!!!!!!!!", 0.05)
     return mhp
-
+#2
 def battle1(mhp):
+    mhp = mmhp
     ehp = 100
     typing_Ani("그냥 잡용이 나타났다!", 0.05)
     while ehp > 0:
@@ -78,8 +81,9 @@ def battle1(mhp):
                 return mhp
     typing_Ani("승리!!!!!!!!!!!!", 0.05)
     return mhp
-
+#3
 def battle2(mhp):
+    mhp = mmhp
     ehp = 200
     typing_Ani("중간용이 나타났다!", 0.05)
     while ehp > 0:
@@ -96,15 +100,16 @@ def battle2(mhp):
                 return mhp
     typing_Ani("승리!!!!!!!!!!!!", 0.05)
     return mhp
-
+#4
 def boss(mhp):
+    mhp = mmhp
     ehp = 500
-    # typing_Ani("보스용이 나타났다!", 0.05)
-    # typing_Ani("보스용:Bist du ein Mensch?", 0.1)
-    # typing_Ani("보스용:Es ist 30 Jahre her, seit Menschen hierher kamen.", 0.1)
-    # typing_Ani("보스용:Bist du ein Krieger, der gekommen ist, um mich herauszufordern?", 0.1)
-    # typing_Ani("보스용:Wenn dem so ist, werde ich mich wehren.", 0.1)
-    # typing_Ani("보스용과의 전투가 시작됐다!", 0.05)
+    typing_Ani("보스용이 나타났다!", 0.05)
+    typing_Ani("보스용:Bist du ein Mensch?", 0.1)
+    typing_Ani("보스용:Es ist 30 Jahre her, seit Menschen hierher kamen.", 0.1)
+    typing_Ani("보스용:Bist du ein Krieger, der gekommen ist, um mich herauszufordern?", 0.1)
+    typing_Ani("보스용:Wenn dem so ist, werde ich mich wehren.", 0.1)
+    typing_Ani("보스용과의 전투가 시작됐다!", 0.05)
     while ehp > 0:
         battle = input("선택(1또는 2):")
         Random = random.randint(1,2)
@@ -119,8 +124,8 @@ def boss(mhp):
                 return mhp
     typing_Ani("보스전전 승리!!!!!!!!!!!!", 0.05)
     return mhp
-
-def shop(weapon,mhp,answer):
+#5
+def shop(weapon,mmhp,answer):
     typing_Ani("점원: 어서오세요", 0.05)
     typing_Ani("점원: 계산은 가지고 계신 식량으로 해주세요.", 0.05)
     typing_Ani("가진 식량: 2개", 0.05)
@@ -129,16 +134,16 @@ def shop(weapon,mhp,answer):
     while answer != 1 or answer !=2:
         answer = input("무엇을 사겠습니까?(1.무기,2.갑옷)->")
         if answer == "1":
-            typing_Ani("쑤퍼 용잡이칼(공격력40)을 얻었다!", 0.05)
-            weapon = 40
+            typing_Ani("쑤퍼 용잡이칼(공격력30)을 얻었다!", 0.05)
+            weapon = 30
             return weapon
         elif answer == "2":
             typing_Ani("쑤퍼 갑옷(hp+100)을 얻었다!", 0.05)
-            mhp = 200
-            return mhp
+            mmhp = 200
+            return mmhp
         else:
             typing_Ani("점원: 그런 물건은 없습니다.", 0.1)
-
+#6
 def key_room(keys,answer):
     Random = random.randint(1,2)
     typing_Ani("상자가 2개 있다!",0.05)
@@ -155,7 +160,7 @@ def key_room(keys,answer):
             return keys
         else:
             typing_Ani("그런 상자는 없다.", 0.1)
-    
+#7
 def treasure1(weapon,answer):
     typing_Ani("보물상자를 발견했다!",0.05)
     typing_Ani("하지만 문제를 풀어야 가져갈수있다.",0.05)
@@ -173,17 +178,16 @@ def treasure1(weapon,answer):
     answer = input("미국의 지역이 아닌 것은?\n(1.오리건 2.조지아 3.펜실베니아 4.웰링턴 5.와이오밍) ->")
     if answer == "4" or answer == "웰링턴":
         typing_Ani("정답!!.",0.05)
-        typing_Ani("보물상자에서 전설의 용잡이칼(공격력 500)을 얻었다!",0.05)
-        typing_Ani("주의! 공격력이 높은 대신 공격 선택지가 4개로 늘어난다.",0.05)
-        weapon = 500
+        typing_Ani("보물상자에서 전설의 용잡이칼(공격력 50)을 얻었다!",0.05)
+        weapon = 50
         return weapon
     elif answer != "4" or answer != "웰링턴":
         typing_Ani("틀렸다!!",0.05)
         typing_Ani("상자가 불타 재가되었다",0.05)
         typing_Ani("재가된 상자를 얻었다.",0.05)
         return weapon
-    
-def treasure2(mhp,answer):
+#8
+def treasure2(mmhp,answer):
     typing_Ani("보물상자를 발견했다!",0.05)
     typing_Ani("하지만 철창 뒤에 있다.",0.05)
     typing_Ani("열쇠로 문을 열어야 한다.",0.05)
@@ -200,18 +204,19 @@ def treasure2(mhp,answer):
             if answer == "2" or answer == "수리남":
                 typing_Ani("정답!!.",0.05)
                 typing_Ani("보물상자에서 전설의 갑옷(방어력 300)을 얻었다!",0.05)
-                mhp = 300
-                return mhp
+                mmhp = 300
+                return mmhp
             elif answer != "2" or answer != "수리남":
                 typing_Ani("틀렸다!!",0.05)
                 typing_Ani("상자가 불타 재가되었다",0.05)
                 typing_Ani("재가된 상자를 얻었다.",0.05)
-                return mhp
+                return mmhp
         elif answer != "3" or answer != "샤잠":
             typing_Ani("틀렸다!!",0.05)
             typing_Ani("상자가 불타 재가되었다",0.05)
             typing_Ani("재가된 상자를 얻었다.",0.05)
-            return mhp
+            return mmhp
     elif keys == 1:
         typing_Ani("열쇠가 없어 문을 열지 못했다",0.05)
-        return mhp
+        return mmhp
+#9
