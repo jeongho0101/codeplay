@@ -59,7 +59,7 @@ def tutorial(mhp):
             mhp -= 10
             if mhp < 0:
                 typing_Ani("용사 사망", 0.07)
-                return mhp
+                break
     typing_Ani("승리!!!!!!!!!!!!", 0.05)
     return mhp
 #2
@@ -78,7 +78,7 @@ def battle1(mhp):
             mhp -= 10
             if mhp < 0:
                 typing_Ani("용사 사망", 0.07)
-                return mhp
+                break
     typing_Ani("승리!!!!!!!!!!!!", 0.05)
     return mhp
 #3
@@ -97,7 +97,7 @@ def battle2(mhp):
             mhp -= 20
             if mhp < 0:
                 typing_Ani("용사 사망", 0.07)
-                return mhp
+                break
     typing_Ani("승리!!!!!!!!!!!!", 0.05)
     return mhp
 #4
@@ -121,9 +121,9 @@ def boss(mhp):
             mhp -= 30
             if mhp < 0:
                 typing_Ani("용사 사망", 0.07)
-                return mhp
-    typing_Ani("보스전전 승리!!!!!!!!!!!!", 0.05)
-    return mhp
+                break
+    typing_Ani("보스전 승리!!!!!!!!!!!!", 0.1)
+    return "end"
 #5
 def shop(weapon,mmhp,answer):
     typing_Ani("점원: 어서오세요", 0.05)

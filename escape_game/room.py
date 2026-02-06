@@ -64,8 +64,17 @@ def enter(room_name):
             rooms[room_name][4] = 0
     print("어디로 가시겠습니까?")
     print("1.오른쪽\n2.왼쪽\n3.뒤\n4.앞\n")
-    direction = int(input())
-
+    direction = input()
+    if direction.isnumeric():
+        direction = int(direction)
+        if 1 <= direction <= 4:
+            return direction
+        else:
+            print("이쪽은 막혀있다.")
+            enter(room_name)
+    else:
+        print("이쪽은 막혀있다.")
+        enter(room_name)
     return direction
 
 def move(room_name, walls, direction):
@@ -293,7 +302,9 @@ def move(room_name, walls, direction):
             print("이쪽은 막혀있다.")
 
     if room_name == 'room18':
-        event.boss(mhp)
+        ending = event.boss(mhp)
+        if ending == "end":
+            return ending
         if walls[direction-1] == 1:
             if direction - 1 == 1:
                 nextRoom = 'room16'
@@ -305,4 +316,12 @@ def move(room_name, walls, direction):
 
 while running:
     dir = enter(room_name)
+    if dir == "end":
+        event.typing_Ani("보스용:Nein, ich habe das Spiel verloren. ", 0.05)
+        event.typing_Ani("보스용:Oh, Gott.. ", 0.05)
+        event.typing_Ani("드디어 이 동굴의 모든 용을 물리쳤다", 0.1)
+        event.typing_Ani("지금까지 잡은 모든 용들로 탑쌓아서 탈출했다.", 0.1)
+        event.typing_Ani("물론 할아버지랑 상점 아저씨는 두고 왔다.", 0.1)
+        event.typing_Ani("끝.", 0.1)
+        break
     room_name = move(room_name, rooms[room_name], dir)
